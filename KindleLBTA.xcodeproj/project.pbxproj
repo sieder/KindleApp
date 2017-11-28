@@ -57,12 +57,12 @@
 			isa = PBXGroup;
 			children = (
 				E0C7BE481FCD17DB00B3318D /* Models.swift */,
+				E01014291FCD25510007DF48 /* BookCell.swift */,
 				E0C7BE361FCC2F8F00B3318D /* AppDelegate.swift */,
 				E0C7BE381FCC2F8F00B3318D /* ViewController.swift */,
 				E0C7BE3D1FCC2F8F00B3318D /* Assets.xcassets */,
 				E0C7BE3F1FCC2F8F00B3318D /* LaunchScreen.storyboard */,
 				E0C7BE421FCC2F8F00B3318D /* Info.plist */,
-				E01014291FCD25510007DF48 /* BookCell.swift */,
 			);
 			path = KindleLBTA;
 			sourceTree = "<group>";
