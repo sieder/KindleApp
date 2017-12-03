@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E010142A1FCD25510007DF48 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01014291FCD25510007DF48 /* BookCell.swift */; };
+		E078650D1FD3C34A00454B48 /* BookPagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078650C1FD3C34A00454B48 /* BookPagerController.swift */; };
+		E078650F1FD3F9B100454B48 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078650E1FD3F9B100454B48 /* PageCell.swift */; };
 		E0C7BE371FCC2F8F00B3318D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C7BE361FCC2F8F00B3318D /* AppDelegate.swift */; };
 		E0C7BE391FCC2F8F00B3318D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C7BE381FCC2F8F00B3318D /* ViewController.swift */; };
 		E0C7BE3E1FCC2F8F00B3318D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0C7BE3D1FCC2F8F00B3318D /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		E01014291FCD25510007DF48 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		E078650C1FD3C34A00454B48 /* BookPagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPagerController.swift; sourceTree = "<group>"; };
+		E078650E1FD3F9B100454B48 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		E0C7BE331FCC2F8F00B3318D /* KindleLBTA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KindleLBTA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0C7BE361FCC2F8F00B3318D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0C7BE381FCC2F8F00B3318D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 				E0C7BE3D1FCC2F8F00B3318D /* Assets.xcassets */,
 				E0C7BE3F1FCC2F8F00B3318D /* LaunchScreen.storyboard */,
 				E0C7BE421FCC2F8F00B3318D /* Info.plist */,
+				E078650C1FD3C34A00454B48 /* BookPagerController.swift */,
+				E078650E1FD3F9B100454B48 /* PageCell.swift */,
 			);
 			path = KindleLBTA;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E010142A1FCD25510007DF48 /* BookCell.swift in Sources */,
+				E078650D1FD3C34A00454B48 /* BookPagerController.swift in Sources */,
+				E078650F1FD3F9B100454B48 /* PageCell.swift in Sources */,
 				E0C7BE491FCD17DB00B3318D /* Models.swift in Sources */,
 				E0C7BE391FCC2F8F00B3318D /* ViewController.swift in Sources */,
 				E0C7BE371FCC2F8F00B3318D /* AppDelegate.swift in Sources */,

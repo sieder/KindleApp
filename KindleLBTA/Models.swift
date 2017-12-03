@@ -31,3 +31,4 @@ class Page {
         self.text = text
     }
 }
+

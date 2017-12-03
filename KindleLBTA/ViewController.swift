@@ -23,17 +23,23 @@ class ViewController: UITableViewController {
         setupBooks()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let layout = UICollectionViewFlowLayout()
+        let bookPagerController = BookPagerController(collectionViewLayout: layout)
+        let navController = UINavigationController(rootViewController: bookPagerController)
+        present(navController, animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! BookCell
         
-//        let book = books?[indexPath.row]
-//        
-//        cell.textLabel?.text = book?.title
-//        cell.imageView?.image = book?.image
+        let book = books?[indexPath.row]
+        
+        cell.book = book
         
         return cell
     }
@@ -45,8 +51,6 @@ class ViewController: UITableViewController {
         
         return 0
     }
-    
-    
     
     func setupBooks() {
         let book = Book(title: "Steve Jobs", author: "Walter Isaacson", image: #imageLiteral(resourceName: "steve_jobs"), pages: [
@@ -62,7 +66,6 @@ class ViewController: UITableViewController {
             ])
         
         self.books = [book, book2]
-        
     }
 }
 
