@@ -15,12 +15,58 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBarStyle()
+        setupNavigationBarButtone()
+        
         tableView.register(BookCell.self, forCellReuseIdentifier: "cellId")
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.lightGray
         
         navigationItem.title = "Kindle"
 
         fetchBooks()
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1)
+        
+        let segmentedControl = UISegmentedControl(items: ["Cloud", "Devide"])
+        segmentedControl.tintColor = .white
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        footerView.addSubview(segmentedControl)
+        
+        segmentedControl.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        segmentedControl.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        segmentedControl.centerXAnchor.constraint(equalTo: footerView.centerXAnchor).isActive = true
+        segmentedControl.centerYAnchor.constraint(equalTo: footerView.centerYAnchor).isActive = true
+        
+        return footerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func setupNavigationBarButtone() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "menu").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenuPress))
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "amazon_icon").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAmazonIconPress))
+    }
+    
+    @objc func handleAmazonIconPress() {
+        print("amazon Pressed!")
+    }
+    
+    @objc func handleMenuPress() {
+        print("Menu Pressed!")
+    }
+    
+    func setupNavigationBarStyle() {
+        print("Setting up nav bar styles")
+        navigationController?.navigationBar.barTintColor = UIColor(red: 40/255, green: 40/255, blue: 40/255, alpha: 1)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
     }
     
     func fetchBooks() {
