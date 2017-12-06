@@ -19,13 +19,65 @@ class ViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         
         navigationItem.title = "Kindle"
+
+        fetchBooks()
+    }
+    
+    func fetchBooks() {
+        print("Fetching")
         
-        setupBooks()
+        if let url = URL(string: "https://letsbuildthatapp-videos.s3-us-west-2.amazonaws.com/kindle.json") {
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                
+                if let err = error {
+                    print("Failed to fetch external json books: ", err)
+                    return
+                }
+
+                guard let data = data else { return }
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    guard let bookDictionaries = json as? [[String: Any]] else { return }
+                    
+                    self.books = []
+                    for bookDictionary in bookDictionaries {
+                        
+                        let book = Book(dictionary: bookDictionary)
+                        
+                        self.books?.append(book)
+//                        if let title = bookDictionary["title"] as? String, let author = bookDictionary["author"] as? String {
+//                            let book = Book(title: title, author: author, image: #imageLiteral(resourceName: "steve_jobs"), pages: [])
+//                            print(book.title)
+//
+//                            self.books?.append(book)
+//                        }
+
+                    }
+
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+
+                } catch let jsonError {
+                    print("Failed to aprse JSON properly", jsonError)
+                }
+                
+            }).resume()
+ 
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedBook = self.books?[indexPath.row]
+        
+        
         let layout = UICollectionViewFlowLayout()
         let bookPagerController = BookPagerController(collectionViewLayout: layout)
+        
+        bookPagerController.book = selectedBook
+        
         let navController = UINavigationController(rootViewController: bookPagerController)
         present(navController, animated: true, completion: nil)
     }
@@ -52,20 +104,6 @@ class ViewController: UITableViewController {
         return 0
     }
     
-    func setupBooks() {
-        let book = Book(title: "Steve Jobs", author: "Walter Isaacson", image: #imageLiteral(resourceName: "steve_jobs"), pages: [
-            Page(number: 1, text: "Text for the firs page"),
-            Page(number: 2, text: "Text for the second page")
-            ])
-        
-        let book2 = Book(title: "Bill Gates: A Biography", author: "Michael Becraft", image: #imageLiteral(resourceName: "bill_gates"), pages: [
-            Page(number: 1, text: "Text for page 1"),
-            Page(number: 2, text: "Text for page 2"),
-            Page(number: 3, text: "Text for page 3"),
-            Page(number: 4, text: "Text for page 4")
-            ])
-        
-        self.books = [book, book2]
-    }
+
 }
 

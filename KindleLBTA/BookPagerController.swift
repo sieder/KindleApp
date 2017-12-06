@@ -10,17 +10,12 @@ import UIKit
 
 class BookPagerController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let pageNumber: UILabel = {
-        let label = UILabel()
-        
-        
-        return label
-    }()
+    var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
-        navigationItem.title = "Book"
+        navigationItem.title = self.book?.title
         
         collectionView?.register(PageCell.self, forCellWithReuseIdentifier: "cellId")
         
@@ -29,21 +24,28 @@ class BookPagerController: UICollectionViewController, UICollectionViewDelegateF
         layout?.minimumLineSpacing = 0
         
         collectionView?.isPagingEnabled = true
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(handleCloseBook))
+    }
+    
+    @objc func handleCloseBook() {
+        dismiss(animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - 78 - 44)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        
+        return book?.pages.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+        let pageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! PageCell
         
-        view.addSubview(pageNumber)
-        pageNumber.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 10, height: 10)
+        let page = book?.pages[indexPath.item]
+        pageCell.textLabel.text = page?.text
         
 //        if indexPath.item % 2 == 0 {
 //            cell.backgroundColor = .red
@@ -53,12 +55,6 @@ class BookPagerController: UICollectionViewController, UICollectionViewDelegateF
 //            cell.backgroundColor = .blue
 //            pageNumber.text = String(indexPath.item)
 //        }
-        
-        
-        
-        
-        
-        
-        return cell
+        return pageCell
     }
 }
