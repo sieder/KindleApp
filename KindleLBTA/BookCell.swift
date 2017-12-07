@@ -49,13 +49,16 @@ class BookCell: UITableViewCell {
     private let titleLabel: UILabel = {
        let label = UILabel()
         label.text = "This is the text for the title of our book inside of our cell"
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
     private let authorLabel: UILabel = {
        let label = UILabel()
         label.text = "This is some author for the book theat we have in this row"
+        label.textColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
